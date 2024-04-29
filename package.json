@@ -1,0 +1,29 @@
+{
+  "name": "koa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "dotenv -e .env.development nodemon --watch src -e ts,tsx --exec ts-node src/index.ts",
+    "start:prod": "dotenv -e .env.production nodemon --watch src -e ts,tsx --exec cross-env NODE_ENV=production ts-node src/index.ts",
+    "prisma:push": "dotenv -e .env.development npx prisma db push",
+    "prisma:migrate": "dotenv -e .env.development npx prisma migrate dev",
+    "build": "rm -rf build && ncc build src/index.ts -m -o build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.12.1",
+    "@types/koa": "^2.15.0",
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.1",
+    "koa": "^2.15.2",
+    "koa-router": "^12.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  },
+  "devDependencies": {
+    "@types/koa-router": "^7.4.8",
+    "prisma": "^5.12.1"
+  }
+}
