@@ -1,8 +1,11 @@
 import Router from "koa-router";
 import UserController from "../controllers/user";
 
-const userRouter = new Router();
+const userRouter = new Router({ prefix: "/user" });
 
-userRouter.get("/users", UserController.listUsers);
+userRouter
+  .post("/register", UserController.register)
+  .get("/info", UserController.getUserInfo)
+  .post("/login", UserController.login);
 
 export default userRouter;
