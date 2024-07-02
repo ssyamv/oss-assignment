@@ -18,18 +18,34 @@ enum Status {
   Dormancy
 }
 
+enum ProductType {
+  Space
+  Traffic
+}
+
 model User {
   id            Int       @id @default(autoincrement())
   name          String    @unique
-  password      String  
+  password      String    
   role          Role      @default(User)
   status        Status    @default(Activation)
-  phone         String    @unique
-  totalSpace    Decimal   @default(0)
-  usedSpace     Decimal   @default(0)
-  totalTraffic  Decimal   @default(0)
-  usedTraffic   Decimal   @default(0)
-  create_time   DateTime  @default(now())
-  update_time   DateTime  @updatedAt
+  email         String    @unique
+  totalSpace    Decimal   @default(0) @map("total_space")
+  usedSpace     Decimal   @default(0) @map("used_space")
+  totalTraffic  Decimal   @default(0) @map("total_traffic")
+  usedTraffic   Decimal   @default(0) @map("used_traffic")
+  createTime    DateTime  @default(dbgenerated("NOW()")) @db.DateTime @map("create_time")
+  updateTime    DateTime  @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0) @map("update_time")
 }
 
+model Product {
+  id          Int         @id @default(autoincrement())
+  name        String      @unique
+  description String?    
+  price       Decimal   
+  size        Decimal   
+  stock       Int       
+  type        ProductType @default(Space)
+  createTime  DateTime    @default(dbgenerated("NOW()")) @db.DateTime @map("create_time")
+  updateTime  DateTime    @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0) @map("update_time")
+}

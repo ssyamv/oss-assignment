@@ -10,19 +10,3 @@ export enum ResponseStatus {
   Forbidden = 403,
   NotFound = 404,
 }
-
-export enum Role {
-  User = "User",
-  Admin = "Admin",
-}
-
-export enum Status {
-  Activation = "Activation",
-  Unregister = "Unregister",
-  Dormancy = "Dormancy",
-}
-
-export enum LoginType {
-  Phone = 1,
-  Name = 2,
-}
